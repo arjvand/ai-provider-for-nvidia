@@ -1,0 +1,16 @@
+/.agents
+/.distignore
+/.git
+/.github
+/.gitattributes
+/.gitignore
+/.mimocode
+/.wordpress-org
+/AGENTS.md
+/README.md
+/composer.json
+/composer.lock
+/mimocode.jsonc
+/phpcs.xml.dist
+/phpstan.neon.dist
+/vendor
