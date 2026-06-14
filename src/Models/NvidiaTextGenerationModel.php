@@ -144,6 +144,7 @@ class NvidiaTextGenerationModel extends AbstractApiBasedModel implements TextGen
                 throw new InvalidArgumentException(
                     sprintf(
                         'The custom option "%s" conflicts with an existing parameter.',
+                        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
                         $key
                     )
                 );
@@ -341,6 +342,7 @@ class NvidiaTextGenerationModel extends AbstractApiBasedModel implements TextGen
         $responseData = $response->getData();
 
         if (!isset($responseData['choices']) || !$responseData['choices']) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
             throw ResponseException::fromMissingData($this->providerMetadata()->getName(), 'choices');
         }
 
@@ -348,7 +350,9 @@ class NvidiaTextGenerationModel extends AbstractApiBasedModel implements TextGen
         foreach ($responseData['choices'] as $index => $choice) {
             if (!is_array($choice) || array_is_list($choice)) {
                 throw ResponseException::fromInvalidData(
+                    // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
                     $this->providerMetadata()->getName(),
+                    // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
                     "choices[{$index}]",
                     'The value must be an associative array.'
                 );
