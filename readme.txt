@@ -46,6 +46,12 @@ Visit the [NVIDIA Build](https://build.nvidia.com/) to create an account and gen
 
 No, this plugin requires the PHP AI Client plugin to be installed and activated. It provides the NVIDIA-specific implementation that the PHP AI Client uses.
 
+== Privacy ==
+
+This plugin sends data to the NVIDIA NIM API (https://integrate.api.nvidia.com) when generating text or images. The data sent includes the user's prompt text and API key. No data is collected, stored, or transmitted to any other third party. The NVIDIA API is used solely to fulfill the generation request.
+
+This plugin does not use cookies, tracking, or analytics.
+
 == Changelog ==
 
 = 1.0.0 =
