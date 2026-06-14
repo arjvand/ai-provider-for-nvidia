@@ -23,8 +23,8 @@ namespace Arjvand\NvidiaAiProvider;
 use Arjvand\NvidiaAiProvider\Provider\NvidiaProvider;
 use WordPress\AiClient\AiClient;
 
-if (!defined('ABSPATH')) {
-    return;
+if ( ! defined( 'ABSPATH' ) ) {
+	return;
 }
 
 require_once __DIR__ . '/src/autoload.php';
@@ -36,19 +36,18 @@ require_once __DIR__ . '/src/autoload.php';
  *
  * @return void
  */
-function register_provider(): void
-{
-    if (!class_exists(AiClient::class)) {
-        return;
-    }
+function register_provider(): void {
+	if ( ! class_exists( AiClient::class ) ) {
+		return;
+	}
 
-    $registry = AiClient::defaultRegistry();
+	$registry = AiClient::defaultRegistry();
 
-    if ($registry->hasProvider(NvidiaProvider::class)) {
-        return;
-    }
+	if ( $registry->hasProvider( NvidiaProvider::class ) ) {
+		return;
+	}
 
-    $registry->registerProvider(NvidiaProvider::class);
+	$registry->registerProvider( NvidiaProvider::class );
 }
 
-add_action('init', __NAMESPACE__ . '\\register_provider', 5);
+add_action( 'init', __NAMESPACE__ . '\\register_provider', 5 );
