@@ -28,10 +28,15 @@ use WordPress\AiClient\Tools\DTO\FunctionDeclaration;
  *
  * @since 1.0.0
  *
+ * @phpstan-type ToolCallData array{
+ *     id: string,
+ *     type?: string,
+ *     function: array{name: string, arguments?: string}
+ * }
  * @phpstan-type MessageData array{
  *     role?: string,
- *     content?: string|array,
- *     tool_calls?: list<array<string, mixed>>,
+ *     content?: string|array<string, mixed>,
+ *     tool_calls?: list<ToolCallData>,
  *     tool_call_id?: string
  * }
  * @phpstan-type ChoiceData array{
