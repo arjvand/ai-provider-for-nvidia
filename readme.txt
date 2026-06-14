@@ -1,5 +1,5 @@
 === AI Provider for NVIDIA ===
-Contributors: wordpressdotorg
+Contributors: arjvand
 Tags: ai, nvidia, nim, artificial-intelligence, connector
 Requires at least: 6.9
 Tested up to: 7.0
