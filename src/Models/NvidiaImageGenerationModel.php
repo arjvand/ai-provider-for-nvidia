@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Arjvand\NvidiaAiProvider\Models;
 
+use Arjvand\NvidiaAiProvider\Provider\NvidiaProvider;
 use WordPress\AiClient\Files\Enums\MediaOrientationEnum;
 use WordPress\AiClient\Providers\Http\DTO\Request;
 use WordPress\AiClient\Providers\Http\Enums\HttpMethodEnum;
 use WordPress\AiClient\Providers\OpenAiCompatibleImplementation\AbstractOpenAiCompatibleImageGenerationModel;
-use Arjvand\NvidiaAiProvider\Provider\NvidiaProvider;
 
 /**
  * Class for an NVIDIA image generation model using the Images API.

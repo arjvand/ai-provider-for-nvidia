@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Arjvand\NvidiaAiProvider\Provider;
 
+use Arjvand\NvidiaAiProvider\Metadata\NvidiaModelMetadataDirectory;
+use Arjvand\NvidiaAiProvider\Models\NvidiaImageGenerationModel;
+use Arjvand\NvidiaAiProvider\Models\NvidiaTextGenerationModel;
 use WordPress\AiClient\AiClient;
 use WordPress\AiClient\Common\Exception\RuntimeException;
 use WordPress\AiClient\Providers\ApiBasedImplementation\AbstractApiProvider;
@@ -15,9 +18,6 @@ use WordPress\AiClient\Providers\Enums\ProviderTypeEnum;
 use WordPress\AiClient\Providers\Http\Enums\RequestAuthenticationMethod;
 use WordPress\AiClient\Providers\Models\Contracts\ModelInterface;
 use WordPress\AiClient\Providers\Models\DTO\ModelMetadata;
-use Arjvand\NvidiaAiProvider\Metadata\NvidiaModelMetadataDirectory;
-use Arjvand\NvidiaAiProvider\Models\NvidiaImageGenerationModel;
-use Arjvand\NvidiaAiProvider\Models\NvidiaTextGenerationModel;
 
 /**
  * Class for the AI Provider for NVIDIA.
@@ -55,6 +55,7 @@ class NvidiaProvider extends AbstractApiProvider
             }
         }
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
         throw new RuntimeException(
             'Unsupported model capabilities: ' . implode(', ', $capabilities)
         );

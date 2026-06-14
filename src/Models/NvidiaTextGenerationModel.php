@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Arjvand\NvidiaAiProvider\Models;
 
+use Arjvand\NvidiaAiProvider\Provider\NvidiaProvider;
 use WordPress\AiClient\Common\Exception\InvalidArgumentException;
 use WordPress\AiClient\Messages\DTO\Message;
 use WordPress\AiClient\Messages\DTO\MessagePart;
@@ -21,7 +22,6 @@ use WordPress\AiClient\Results\DTO\TokenUsage;
 use WordPress\AiClient\Results\Enums\FinishReasonEnum;
 use WordPress\AiClient\Tools\DTO\FunctionCall;
 use WordPress\AiClient\Tools\DTO\FunctionDeclaration;
-use Arjvand\NvidiaAiProvider\Provider\NvidiaProvider;
 
 /**
  * Class for an NVIDIA text generation model using the Chat Completions API.

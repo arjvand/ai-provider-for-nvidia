@@ -20,8 +20,8 @@ declare(strict_types=1);
 
 namespace Arjvand\NvidiaAiProvider;
 
-use WordPress\AiClient\AiClient;
 use Arjvand\NvidiaAiProvider\Provider\NvidiaProvider;
+use WordPress\AiClient\AiClient;
 
 if (!defined('ABSPATH')) {
     return;
