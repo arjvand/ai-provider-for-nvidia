@@ -1,6 +1,6 @@
-=== AI Provider for NVIDIA ===
+=== Forgeia AI Provider for NVIDIA ===
 Contributors: arjvand
-Tags: ai, nvidia, nim, artificial-intelligence, connector
+Tags: ai, nvidia, nim, artificial-intelligence, connector, forgeia
 Requires at least: 6.9
 Tested up to: 7.0
 Stable tag: 1.0.0
@@ -8,11 +8,11 @@ Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-AI Provider for NVIDIA for the PHP AI Client SDK.
+Forgeia AI Provider for NVIDIA for the PHP AI Client SDK.
 
 == Description ==
 
-This plugin provides NVIDIA NIM integration for the PHP AI Client SDK. It enables WordPress sites to use NVIDIA's inference microservices for text generation and image generation.
+This plugin provides Forgeia NVIDIA NIM integration for the PHP AI Client SDK. It enables WordPress sites to use NVIDIA's inference microservices for text generation and image generation.
 
 **Features:**
 
@@ -32,7 +32,7 @@ Available models are dynamically discovered from the NVIDIA NIM API, including m
 
 == Installation ==
 
-1. Upload the plugin files to `/wp-content/plugins/ai-provider-for-nvidia/`
+1. Upload the plugin files to `/wp-content/plugins/forgeia-ai-provider-for-nvidia/`
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Configure your NVIDIA API key via the `NVIDIA_API_KEY` environment variable or constant
 

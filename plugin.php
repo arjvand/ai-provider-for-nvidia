@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Plugin Name: AI Provider for NVIDIA
- * Plugin URI: https://github.com/arjvand/ai-provider-for-nvidia
- * Description: AI Provider for NVIDIA for the WordPress AI Client.
+ * Plugin Name: Forgeia AI Provider for NVIDIA
+ * Plugin URI: https://github.com/arjvand/forgeia-ai-provider-for-nvidia
+ * Description: Forgeia AI Provider for NVIDIA for the WordPress AI Client.
  * Requires at least: 6.9
  * Requires PHP: 7.4
  * Version: 1.0.0
@@ -11,16 +11,16 @@
  * Author URI: https://github.com/arjvand
  * License: GPL-2.0-or-later
  * License URI: https://spdx.org/licenses/GPL-2.0-or-later.html
- * Text Domain: ai-provider-for-nvidia
+ * Text Domain: forgeia-ai-provider-for-nvidia
  *
- * @package Arjvand\NvidiaAiProvider
+ * @package Forgeia\NvidiaAiProvider
  */
 
 declare(strict_types=1);
 
-namespace Arjvand\NvidiaAiProvider;
+namespace Forgeia\NvidiaAiProvider;
 
-use Arjvand\NvidiaAiProvider\Provider\NvidiaProvider;
+use Forgeia\NvidiaAiProvider\Provider\NvidiaProvider;
 use WordPress\AiClient\AiClient;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/src/autoload.php';
 
 /**
- * Registers the AI Provider for NVIDIA with the AI Client.
+ * Registers the Forgeia AI Provider for NVIDIA with the AI Client.
  *
  * @since 1.0.0
  *

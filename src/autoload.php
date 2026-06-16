@@ -1,11 +1,11 @@
 <?php
 
 /**
- * PSR-4 autoloader for the AI Provider for NVIDIA package.
+ * PSR-4 autoloader for the Forgeia AI Provider for NVIDIA package.
  *
  * @since 1.0.0
  *
- * @package Arjvand\NvidiaAiProvider
+ * @package Forgeia\NvidiaAiProvider
  */
 
 declare(strict_types=1);
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 spl_autoload_register(
 	static function ( string $class ): void {
-		$prefix  = 'Arjvand\\NvidiaAiProvider\\';
+		$prefix  = 'Forgeia\\NvidiaAiProvider\\';
 		$baseDir = __DIR__ . '/';
 
 		$len = strlen( $prefix );

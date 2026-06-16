@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Arjvand\NvidiaAiProvider\Models;
+namespace Forgeia\NvidiaAiProvider\Models;
 
-use Arjvand\NvidiaAiProvider\Provider\NvidiaProvider;
+use Forgeia\NvidiaAiProvider\Provider\NvidiaProvider;
 use WordPress\AiClient\Common\Exception\InvalidArgumentException;
 use WordPress\AiClient\Messages\DTO\Message;
 use WordPress\AiClient\Messages\DTO\MessagePart;

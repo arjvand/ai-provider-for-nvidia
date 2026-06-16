@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="AI Provider for NVIDIA Coding Standards">
-    <description>WordPress coding standards for AI Provider for NVIDIA</description>
+<ruleset name="Forgeia AI Provider for NVIDIA Coding Standards">
+    <description>WordPress coding standards for Forgeia AI Provider for NVIDIA</description>
 
     <!-- Scan these files -->
     <file>src</file>

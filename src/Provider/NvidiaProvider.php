@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Arjvand\NvidiaAiProvider\Provider;
+namespace Forgeia\NvidiaAiProvider\Provider;
 
-use Arjvand\NvidiaAiProvider\Metadata\NvidiaModelMetadataDirectory;
-use Arjvand\NvidiaAiProvider\Models\NvidiaImageGenerationModel;
-use Arjvand\NvidiaAiProvider\Models\NvidiaTextGenerationModel;
+use Forgeia\NvidiaAiProvider\Metadata\NvidiaModelMetadataDirectory;
+use Forgeia\NvidiaAiProvider\Models\NvidiaImageGenerationModel;
+use Forgeia\NvidiaAiProvider\Models\NvidiaTextGenerationModel;
 use WordPress\AiClient\AiClient;
 use WordPress\AiClient\Common\Exception\RuntimeException;
 use WordPress\AiClient\Providers\ApiBasedImplementation\AbstractApiProvider;
@@ -20,7 +20,7 @@ use WordPress\AiClient\Providers\Models\Contracts\ModelInterface;
 use WordPress\AiClient\Providers\Models\DTO\ModelMetadata;
 
 /**
- * Class for the AI Provider for NVIDIA.
+ * Class for the Forgeia AI Provider for NVIDIA.
  *
  * @since 1.0.0
  */
@@ -78,7 +78,7 @@ class NvidiaProvider extends AbstractApiProvider {
 			// For WordPress, we should translate the description.
 			if ( function_exists( '__' ) ) {
                 // phpcs:ignore Generic.Files.LineLength.TooLong
-				$providerMetadataArgs[] = __( 'Text and image generation with NVIDIA NIM models.', 'ai-provider-for-nvidia' );
+				$providerMetadataArgs[] = __( 'Text and image generation with NVIDIA NIM models.', 'forgeia-ai-provider-for-nvidia' );
 			} else {
 				$providerMetadataArgs[] = 'Text and image generation with NVIDIA NIM models.';
 			}

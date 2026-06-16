@@ -1,6 +1,6 @@
-# AI Provider for NVIDIA
+# Forgeia AI Provider for NVIDIA
 
-An AI Provider for NVIDIA for the [PHP AI Client](https://github.com/arjvand/php-ai-client) SDK. Works as both a Composer package and a WordPress plugin.
+Forgeia AI Provider for NVIDIA for the [PHP AI Client](https://github.com/arjvand/php-ai-client) SDK. Works as both a Composer package and a WordPress plugin.
 
 ## Requirements
 
@@ -13,13 +13,13 @@ An AI Provider for NVIDIA for the [PHP AI Client](https://github.com/arjvand/php
 ### As a Composer Package
 
 ```
-composer require arjvand/ai-provider-for-nvidia
+composer require forgeia/forgeia-ai-provider-for-nvidia
 ```
 
 ### As a WordPress Plugin
 
 1. Download the plugin files
-2. Upload to `/wp-content/plugins/ai-provider-for-nvidia/`
+2. Upload to `/wp-content/plugins/forgeia-ai-provider-for-nvidia/`
 3. Ensure the PHP AI Client plugin is installed and activated
 4. Activate the plugin through the WordPress admin
 
@@ -43,7 +43,7 @@ $result = AiClient::prompt('Hello, world!')
 
 ```php
 use WordPress\AiClient\AiClient;
-use Arjvand\NvidiaAiProvider\Provider\NvidiaProvider;
+use Forgeia\NvidiaAiProvider\Provider\NvidiaProvider;
 
 // Register the provider
 $registry = AiClient::defaultRegistry();

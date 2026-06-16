@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Arjvand\NvidiaAiProvider\Models;
+namespace Forgeia\NvidiaAiProvider\Models;
 
-use Arjvand\NvidiaAiProvider\Provider\NvidiaProvider;
+use Forgeia\NvidiaAiProvider\Provider\NvidiaProvider;
 use WordPress\AiClient\Files\Enums\MediaOrientationEnum;
 use WordPress\AiClient\Providers\Http\DTO\Request;
 use WordPress\AiClient\Providers\Http\Enums\HttpMethodEnum;

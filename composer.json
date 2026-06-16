@@ -1,6 +1,6 @@
 {
-    "name": "arjvand/ai-provider-for-nvidia",
-    "description": "AI Provider for NVIDIA for the PHP AI Client SDK. Works as both a Composer package and a WordPress plugin.",
+    "name": "forgeia/forgeia-ai-provider-for-nvidia",
+    "description": "Forgeia AI Provider for NVIDIA for the PHP AI Client SDK. Works as both a Composer package and a WordPress plugin.",
     "license": "GPL-2.0-or-later",
     "keywords": [
         "ai",
@@ -15,10 +15,10 @@
             "homepage": "https://github.com/arjvand"
         }
     ],
-    "homepage": "https://github.com/arjvand/ai-provider-for-nvidia",
+    "homepage": "https://github.com/arjvand/forgeia-ai-provider-for-nvidia",
     "support": {
-        "issues": "https://github.com/arjvand/ai-provider-for-nvidia/issues",
-        "source": "https://github.com/arjvand/ai-provider-for-nvidia"
+        "issues": "https://github.com/arjvand/forgeia-ai-provider-for-nvidia/issues",
+        "source": "https://github.com/arjvand/forgeia-ai-provider-for-nvidia"
     },
     "require": {
         "php": ">=7.4"
@@ -39,7 +39,7 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Arjvand\\NvidiaAiProvider\\": "src/"
+            "Forgeia\\NvidiaAiProvider\\": "src/"
         }
     },
     "config": {

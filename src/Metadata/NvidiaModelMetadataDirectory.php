@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Arjvand\NvidiaAiProvider\Metadata;
+namespace Forgeia\NvidiaAiProvider\Metadata;
 
-use Arjvand\NvidiaAiProvider\Provider\NvidiaProvider;
+use Forgeia\NvidiaAiProvider\Provider\NvidiaProvider;
 use WordPress\AiClient\Messages\Enums\ModalityEnum;
 use WordPress\AiClient\Providers\Http\DTO\Request;
 use WordPress\AiClient\Providers\Http\DTO\Response;
