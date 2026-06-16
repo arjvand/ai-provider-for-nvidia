@@ -1,6 +1,6 @@
 === Forgeia AI Provider for NVIDIA ===
 Contributors: arjvand
-Tags: ai, nvidia, nim, artificial-intelligence, connector, forgeia
+Tags: ai, nvidia, nim, artificial-intelligence, connector
 Requires at least: 6.9
 Tested up to: 7.0
 Stable tag: 1.0.0
