@@ -1,6 +1,7 @@
 /vendor/
 AGENTS.md
 mimocode.jsonc
+opencode.jsonc
 skills-lock.json
 /.agents/
 /.mimocode/

@@ -1,12 +1,12 @@
 # Forgeia AI Provider for NVIDIA
 
-Forgeia AI Provider for NVIDIA for the [PHP AI Client](https://github.com/arjvand/php-ai-client) SDK. Works as both a Composer package and a WordPress plugin.
+Forgeia AI Provider for NVIDIA for the [PHP AI Client](https://github.com/wordpress/php-ai-client) SDK. Works as both a Composer package and a WordPress plugin.
 
 ## Requirements
 
 - PHP 7.4 or higher
 - When using with WordPress, requires WordPress 7.0 or higher
-    - If using an older WordPress release, the [wordpress/php-ai-client](https://github.com/arjvand/php-ai-client) package must be installed
+    - If using an older WordPress release, the [wordpress/php-ai-client](https://github.com/wordpress/php-ai-client) package must be installed
 
 ## Installation
 

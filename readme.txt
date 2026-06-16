@@ -26,7 +26,7 @@ Available models are dynamically discovered from the NVIDIA NIM API, including m
 **Requirements:**
 
 * PHP 7.4 or higher
-* For WordPress 6.9, the [wordpress/php-ai-client](https://github.com/arjvand/php-ai-client) package must be installed
+* For WordPress 6.9, the [wordpress/php-ai-client](https://github.com/wordpress/php-ai-client) package must be installed
 * For WordPress 7.0 and above, no additional changes are required
 * NVIDIA API key
 
