@@ -3,7 +3,7 @@ Contributors: arjvand
 Tags: ai, nvidia, nim, artificial-intelligence, connector
 Requires at least: 6.9
 Tested up to: 7.0
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -179,6 +179,13 @@ This plugin sends data to the NVIDIA NIM API (https://integrate.api.nvidia.com) 
 This plugin does not use cookies, tracking, or analytics.
 
 == Changelog ==
+
+= 1.1.0 =
+
+* Replace pattern-based model classification with explicit model allowlists for accuracy
+* Add comprehensive supported models list to readme.txt (including embedding models)
+* Add WordPress.org plugin directory assets (icons)
+* Fix SVN deployment slug
 
 = 1.0.1 =
 
