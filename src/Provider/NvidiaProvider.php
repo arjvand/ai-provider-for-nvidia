@@ -54,9 +54,18 @@ class NvidiaProvider extends AbstractApiProvider {
 			}
 		}
 
+		foreach ( $capabilities as $capability ) {
+			if ( $capability->isEmbeddingGeneration() ) {
+				// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
+				throw new RuntimeException(
+					'Embedding model "' . $modelMetadata->getId() . '" cannot be used for chat or image generation.' // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
+				);
+			}
+		}
+
 		// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		throw new RuntimeException(
-			'Unsupported model capabilities: ' . implode( ', ', $capabilities ) // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
+			'Unsupported model capabilities for "' . $modelMetadata->getId() . '": ' . implode( ', ', $capabilities ) // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		);
 	}
 
