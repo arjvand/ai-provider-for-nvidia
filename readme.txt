@@ -8,7 +8,7 @@ Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Forgeia AI Provider for NVIDIA for the PHP AI Client SDK.
+Adds NVIDIA NIM text, image, and embedding generation to the WordPress AI Client.
 
 == Description ==
 
@@ -174,9 +174,9 @@ No, this plugin requires the PHP AI Client plugin to be installed and activated.
 
 == Privacy ==
 
-This plugin sends data to the NVIDIA NIM API (https://integrate.api.nvidia.com) when generating text or images. The data sent includes the user's prompt text and API key. No data is collected, stored, or transmitted to any other third party. The NVIDIA API is used solely to fulfill the generation request.
+This plugin sends data to the NVIDIA NIM API (https://integrate.api.nvidia.com) when generating text or images. The data sent is limited to the user's prompt text and API key and is used solely to fulfill the generation request. No data is collected, stored, or transmitted to any other third party.
 
-This plugin does not use cookies, tracking, or analytics.
+This plugin does not use cookies, tracking, or analytics. It stores no personal data on your server and sets no cookies. In accordance with GDPR and UK GDPR requirements, no user consent is needed for privacy compliance — all data processing is limited to API request fulfillment with no storage or sharing of personal information.
 
 == Changelog ==
 
