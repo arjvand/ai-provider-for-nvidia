@@ -129,6 +129,12 @@ class NvidiaTextGenerationModel extends AbstractApiBasedModel implements TextGen
 			$params['tools'] = $this->prepareToolsParam( $functionDeclarations );
 		}
 
+		$outputMimeType = $config->getOutputMimeType();
+		if ( 'application/json' === $outputMimeType ) {
+			$outputSchema              = $config->getOutputSchema();
+			$params['response_format'] = $this->prepareResponseFormatParam( $outputSchema );
+		}
+
 		// Add system instruction as a system message if present.
 		$systemInstruction = $config->getSystemInstruction();
 		if ( $systemInstruction ) {
@@ -327,6 +333,29 @@ class NvidiaTextGenerationModel extends AbstractApiBasedModel implements TextGen
 		}
 
 		return $tools;
+	}
+
+	/**
+	 * Prepares the response_format parameter for the API request.
+	 *
+	 * This is only called if the output MIME type is `application/json`.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param array<string, mixed>|null $outputSchema The output schema.
+	 * @return array<string, mixed> The prepared response format parameter.
+	 */
+	protected function prepareResponseFormatParam( ?array $outputSchema ): array {
+		if ( $outputSchema !== null ) {
+			return array(
+				'type'        => 'json_schema',
+				'json_schema' => array(
+					'name'   => 'response',
+					'schema' => $outputSchema,
+				),
+			);
+		}
+		return array( 'type' => 'json_object' );
 	}
 
 	/**

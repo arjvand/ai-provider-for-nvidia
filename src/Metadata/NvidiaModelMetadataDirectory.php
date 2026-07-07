@@ -252,6 +252,8 @@ class NvidiaModelMetadataDirectory extends AbstractOpenAiCompatibleModelMetadata
 			new SupportedOption( OptionEnum::topP() ),
 			new SupportedOption( OptionEnum::stopSequences() ),
 			new SupportedOption( OptionEnum::functionDeclarations() ),
+			new SupportedOption( OptionEnum::outputMimeType(), array( 'application/json' ) ),
+			new SupportedOption( OptionEnum::outputSchema() ),
 			new SupportedOption( OptionEnum::customOptions() ),
 		);
 		$textOptions            = array_merge(
