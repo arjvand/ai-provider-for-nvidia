@@ -40,8 +40,8 @@ class NvidiaSettingsPage {
 	 */
 	public static function register(): void {
 		add_options_page(
-			__( 'Forgeia NVIDIA', 'forgeia-ai-provider-for-nvidia' ),
-			__( 'Forgeia NVIDIA', 'forgeia-ai-provider-for-nvidia' ),
+			__( 'NVIDIA AI Connector', 'forgeia-ai-provider-for-nvidia' ),
+			__( 'NVIDIA AI Connector', 'forgeia-ai-provider-for-nvidia' ),
 			'manage_options',
 			self::PAGE_SLUG,
 			array( self::class, 'render' )

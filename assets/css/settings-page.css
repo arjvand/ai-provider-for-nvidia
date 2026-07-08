@@ -106,7 +106,7 @@
 .forgeia-nvidia-settings-body .components-button.is-primary {
 	background: #76b900;
 	border-color: #76b900;
-	color: #fff;
+	color: #000;
 	font-weight: 500;
 	padding: 6px 28px;
 	transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
@@ -115,15 +115,18 @@
 .forgeia-nvidia-settings-body .components-button.is-primary:hover {
 	background: #5e9400;
 	border-color: #5e9400;
+	color: #000;
 }
 
 .forgeia-nvidia-settings-body .components-button.is-primary:focus {
 	background: #5e9400;
 	border-color: #5e9400;
 	box-shadow: 0 0 0 1.5px #fff, 0 0 0 var( --wp-admin-border-width-focus, 2px ) #76b900;
+	color: #000;
 }
 
 .forgeia-nvidia-settings-body .components-button.is-primary:active {
 	background: #4a7a00;
 	border-color: #4a7a00;
+	color: #000;
 }
