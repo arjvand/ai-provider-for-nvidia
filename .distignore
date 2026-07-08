@@ -15,4 +15,5 @@
 /phpstan.neon.dist
 /vendor
 /docs
+/openspec
 /stubs
