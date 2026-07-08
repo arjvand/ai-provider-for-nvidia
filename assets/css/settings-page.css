@@ -6,10 +6,6 @@
 	margin-top: 16px;
 }
 
-.forgeia-nvidia-settings-card {
-	border-radius: 4px;
-}
-
 .forgeia-nvidia-settings-description {
 	margin: 0 0 16px;
 	max-width: 680px;
@@ -19,6 +15,10 @@
 	max-width: 560px;
 }
 
-.forgeia-nvidia-settings-page .components-button[type='submit'] {
-	margin-top: 8px;
+.forgeia-nvidia-settings-page .components-panel__body > .components-button {
+	margin-top: 16px;
+}
+
+.forgeia-nvidia-settings-page .components-panel__body > .components-base-control + .components-base-control {
+	margin-top: 16px;
 }
