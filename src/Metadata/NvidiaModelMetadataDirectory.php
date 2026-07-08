@@ -68,7 +68,7 @@ class NvidiaModelMetadataDirectory extends AbstractOpenAiCompatibleModelMetadata
 	/**
 	 * Text generation model allowlist (text-only chat completion).
 	 *
-	 * Derived from /v1/models fetch on 2026-06-19.
+	 * Derived from /v1/models fetch on 2026-07-08.
 	 *
 	 * @since 1.1.0
 	 *
@@ -157,7 +157,7 @@ class NvidiaModelMetadataDirectory extends AbstractOpenAiCompatibleModelMetadata
 		'writer/palmyra-fin-70b-32k',
 		'writer/palmyra-med-70b',
 		'writer/palmyra-med-70b-32k',
-		'z-ai/glm-5.1',
+		'z-ai/glm-5.2',
 		'zyphra/zamba2-7b-instruct',
 	);
 
