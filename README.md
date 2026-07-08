@@ -60,6 +60,8 @@ $result = AiClient::prompt('Explain quantum computing')
 echo $result->toText();
 ```
 
+![NVIDIA AI Connector settings page](assets/screenshot-1.png)
+
 ## Supported Models
 
 Available models are dynamically discovered from the NVIDIA NIM API. This includes text generation models (NVIDIA Nemotron, Meta Llama, Google Gemma, Mistral, and others), and image generation models (Stable Diffusion, Flux). See the [NVIDIA Build](https://build.nvidia.com/) for the full list of available models.
