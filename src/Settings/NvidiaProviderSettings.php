@@ -104,7 +104,7 @@ class NvidiaProviderSettings {
 	 */
 	public static function getDefaultSettings(): array {
 		return array(
-			self::KEY_DEFAULT_TEXT_GENERATION_MODEL  => '',
+			self::KEY_DEFAULT_TEXT_GENERATION_MODEL  => 'nvidia/llama-3.3-nemotron-super-49b-v1',
 			self::KEY_DEFAULT_IMAGE_GENERATION_MODEL => '',
 		);
 	}
