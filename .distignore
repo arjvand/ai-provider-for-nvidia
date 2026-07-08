@@ -14,3 +14,5 @@
 /phpcs.xml.dist
 /phpstan.neon.dist
 /vendor
+/docs
+/stubs
