@@ -8,27 +8,27 @@
 	var el = wp.element.createElement;
 	var Button = wp.components.Button;
 	var Notice = wp.components.Notice;
-	var SelectControl = wp.components.SelectControl;
+	var ComboboxControl = wp.components.ComboboxControl;
 	var useState = wp.element.useState;
 	var data = window.forgeiaNvidiaSettings || {};
 
-	function getOptions( models ) {
-		var labels = data.labels || {};
-		var options = [
-			{
-				label: labels.emptyOption || 'Use provider ordering',
-				value: '',
-			},
-		];
-
-		( models || [] ).forEach( function ( model ) {
-			options.push( {
+	function getModelOptions( models ) {
+		return ( models || [] ).map( function ( model ) {
+			return {
 				label: model.name + ' (' + model.id + ')',
 				value: model.id,
-			} );
+			};
 		} );
+	}
 
-		return options;
+	function filterOptions( options, filter ) {
+		if ( ! filter ) {
+			return options;
+		}
+		var lower = filter.toLowerCase();
+		return options.filter( function ( opt ) {
+			return opt.label.toLowerCase().indexOf( lower ) !== -1;
+		} );
 	}
 
 	function hiddenInputName( key ) {
@@ -47,6 +47,19 @@
 		var setTextModel = textState[ 1 ];
 		var imageModel = imageState[ 0 ];
 		var setImageModel = imageState[ 1 ];
+
+		var textFilterState = useState( '' );
+		var imageFilterState = useState( '' );
+		var textFilterValue = textFilterState[ 0 ];
+		var setTextFilterValue = textFilterState[ 1 ];
+		var imageFilterValue = imageFilterState[ 0 ];
+		var setImageFilterValue = imageFilterState[ 1 ];
+
+		var allTextOptions = getModelOptions( data.textModels );
+		var allImageOptions = getModelOptions( data.imageModels );
+
+		var textFilteredOptions = filterOptions( allTextOptions, textFilterValue );
+		var imageFilteredOptions = filterOptions( allImageOptions, imageFilterValue );
 
 		return el(
 			'div',
@@ -91,10 +104,12 @@
 							name: hiddenInputName( textKey ),
 							value: textModel,
 						} ),
-						el( SelectControl, {
-							value: textModel,
-							options: getOptions( data.textModels ),
-							onChange: setTextModel,
+						el( ComboboxControl, {
+							value: textModel || null,
+							options: textFilteredOptions,
+							onChange: function ( v ) { setTextModel( v || '' ); },
+							onFilterValueChange: setTextFilterValue,
+							placeholder: labels.emptyOption || 'Use provider ordering',
 							__nextHasNoMarginBottom: true,
 						} )
 					),
@@ -112,10 +127,12 @@
 							name: hiddenInputName( imageKey ),
 							value: imageModel,
 						} ),
-						el( SelectControl, {
-							value: imageModel,
-							options: getOptions( data.imageModels ),
-							onChange: setImageModel,
+						el( ComboboxControl, {
+							value: imageModel || null,
+							options: imageFilteredOptions,
+							onChange: function ( v ) { setImageModel( v || '' ); },
+							onFilterValueChange: setImageFilterValue,
+							placeholder: labels.emptyOption || 'Use provider ordering',
 							__nextHasNoMarginBottom: true,
 						} )
 					),
