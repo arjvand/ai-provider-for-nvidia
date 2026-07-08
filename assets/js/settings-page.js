@@ -80,45 +80,45 @@
 								title: labels.heading || 'Default models',
 								initialOpen: true,
 							},
-							createElement(
-								'p',
-								{ className: 'forgeia-nvidia-settings-description' },
-								labels.description || 'Choose which NVIDIA models should be preferred when the AI Client auto-discovers a text or image generation model.'
-							),
-							createElement( 'input', {
-								type: 'hidden',
-								name: hiddenInputName( textKey ),
-								value: textModel,
-							} ),
-							createElement( SelectControl, {
-								label: labels.textLabel || 'Text generation model',
-								value: textModel,
-								options: getOptions( data.textModels ),
-								onChange: setTextModel,
-							} ),
-							createElement( 'input', {
-								type: 'hidden',
-								name: hiddenInputName( imageKey ),
-								value: imageModel,
-							} ),
-							createElement( SelectControl, {
-								label: labels.imageLabel || 'Image generation model',
-								value: imageModel,
-								options: getOptions( data.imageModels ),
-								onChange: setImageModel,
-							} ),
-							createElement(
-								Button,
-								{
-									variant: 'primary',
-									type: 'submit',
-								},
-								labels.saveButton || 'Save settings'
-							)
-						)
+					createElement(
+						'p',
+						{ className: 'forgeia-nvidia-settings-description' },
+						labels.description || 'Choose which NVIDIA models should be preferred when the AI Client auto-discovers a text or image generation model.'
+					),
+					createElement( 'input', {
+						type: 'hidden',
+						name: hiddenInputName( textKey ),
+						value: textModel,
+					} ),
+					createElement( SelectControl, {
+						label: labels.textLabel || 'Text generation model',
+						value: textModel,
+						options: getOptions( data.textModels ),
+						onChange: setTextModel,
+					} ),
+					createElement( 'input', {
+						type: 'hidden',
+						name: hiddenInputName( imageKey ),
+						value: imageModel,
+					} ),
+					createElement( SelectControl, {
+						label: labels.imageLabel || 'Image generation model',
+						value: imageModel,
+						options: getOptions( data.imageModels ),
+						onChange: setImageModel,
+					} ),
+					createElement(
+						Button,
+						{
+							variant: 'primary',
+							type: 'submit',
+						},
+						labels.saveButton || 'Save settings'
 					)
 				)
 			)
+		)
+	)
 		);
 	}
 

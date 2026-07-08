@@ -3,7 +3,11 @@
 }
 
 .forgeia-nvidia-settings-app {
-	margin-top: 16px;
+	margin-top: 0;
+}
+
+.forgeia-nvidia-settings-card .components-card-body {
+	padding: 0;
 }
 
 .forgeia-nvidia-settings-description {
@@ -13,12 +17,9 @@
 
 .forgeia-nvidia-settings-page .components-base-control {
 	max-width: 560px;
+	margin-bottom: 16px;
 }
 
-.forgeia-nvidia-settings-page .components-panel__body > .components-button {
-	margin-top: 16px;
-}
-
-.forgeia-nvidia-settings-page .components-panel__body > .components-base-control + .components-base-control {
+.forgeia-nvidia-settings-page .components-button[type='submit'] {
 	margin-top: 16px;
 }
