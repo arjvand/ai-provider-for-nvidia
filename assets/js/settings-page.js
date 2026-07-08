@@ -5,14 +5,10 @@
 		return;
 	}
 
+	var el = wp.element.createElement;
 	var Button = wp.components.Button;
-	var Card = wp.components.Card;
-	var CardBody = wp.components.CardBody;
 	var Notice = wp.components.Notice;
-	var Panel = wp.components.Panel;
-	var PanelBody = wp.components.PanelBody;
 	var SelectControl = wp.components.SelectControl;
-	var createElement = wp.element.createElement;
 	var useState = wp.element.useState;
 	var data = window.forgeiaNvidiaSettings || {};
 
@@ -52,62 +48,78 @@
 		var imageModel = imageState[ 0 ];
 		var setImageModel = imageState[ 1 ];
 
-		return createElement(
+		return el(
 			'div',
 			{ className: 'forgeia-nvidia-settings-app' },
 			data.loadError
-				? createElement(
+				? el(
 						Notice,
 						{
 							status: 'warning',
 							isDismissible: false,
 						},
-						labels.loadingFailed || 'Model list could not be loaded. Saved values remain available and can still be saved.'
+						labels.loadingFailed || ''
 				  )
 				: null,
-			createElement(
-				Card,
+			el(
+				'div',
 				{ className: 'forgeia-nvidia-settings-card' },
-				createElement(
-					CardBody,
-					null,
-					createElement(
-						Panel,
-						null,
-						createElement(
-							PanelBody,
-							{
-								title: labels.heading || 'Default models',
-								initialOpen: true,
-							},
-					createElement(
-						'p',
-						{ className: 'forgeia-nvidia-settings-description' },
-						labels.description || 'Choose which NVIDIA models should be preferred when the AI Client auto-discovers a text or image generation model.'
+				el(
+					'div',
+					{ className: 'forgeia-nvidia-settings-header' },
+					el(
+						'div',
+						{ className: 'forgeia-nvidia-settings-header-text' },
+						el( 'h2', null, labels.heading || 'Default models' ),
+						el( 'p', null, labels.description || '' )
+					)
+				),
+				el(
+					'div',
+					{ className: 'forgeia-nvidia-settings-body' },
+					el(
+						'div',
+						{ className: 'forgeia-nvidia-settings-field' },
+						el( 'label', null, labels.textLabel || 'Text generation model' ),
+						el(
+							'p',
+							{ className: 'description' },
+							'Default model for chat and text completions.'
+						),
+						el( 'input', {
+							type: 'hidden',
+							name: hiddenInputName( textKey ),
+							value: textModel,
+						} ),
+						el( SelectControl, {
+							value: textModel,
+							options: getOptions( data.textModels ),
+							onChange: setTextModel,
+							__nextHasNoMarginBottom: true,
+						} )
 					),
-					createElement( 'input', {
-						type: 'hidden',
-						name: hiddenInputName( textKey ),
-						value: textModel,
-					} ),
-					createElement( SelectControl, {
-						label: labels.textLabel || 'Text generation model',
-						value: textModel,
-						options: getOptions( data.textModels ),
-						onChange: setTextModel,
-					} ),
-					createElement( 'input', {
-						type: 'hidden',
-						name: hiddenInputName( imageKey ),
-						value: imageModel,
-					} ),
-					createElement( SelectControl, {
-						label: labels.imageLabel || 'Image generation model',
-						value: imageModel,
-						options: getOptions( data.imageModels ),
-						onChange: setImageModel,
-					} ),
-					createElement(
+					el(
+						'div',
+						{ className: 'forgeia-nvidia-settings-field' },
+						el( 'label', null, labels.imageLabel || 'Image generation model' ),
+						el(
+							'p',
+							{ className: 'description' },
+							'Default model for image generation.'
+						),
+						el( 'input', {
+							type: 'hidden',
+							name: hiddenInputName( imageKey ),
+							value: imageModel,
+						} ),
+						el( SelectControl, {
+							value: imageModel,
+							options: getOptions( data.imageModels ),
+							onChange: setImageModel,
+							__nextHasNoMarginBottom: true,
+						} )
+					),
+					el(
 						Button,
 						{
 							variant: 'primary',
@@ -117,8 +129,6 @@
 					)
 				)
 			)
-		)
-	)
 		);
 	}
 
@@ -129,10 +139,10 @@
 		}
 
 		if ( wp.element.createRoot ) {
-			wp.element.createRoot( root ).render( createElement( App ) );
+			wp.element.createRoot( root ).render( el( App ) );
 			return;
 		}
 
-		wp.element.render( createElement( App ), root );
+		wp.element.render( el( App ), root );
 	} );
 } )( window.wp );
