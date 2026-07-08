@@ -20,7 +20,9 @@ declare(strict_types=1);
 
 namespace Forgeia\NvidiaAiProvider;
 
+use Forgeia\NvidiaAiProvider\Admin\NvidiaSettingsPage;
 use Forgeia\NvidiaAiProvider\Provider\NvidiaProvider;
+use Forgeia\NvidiaAiProvider\Settings\NvidiaProviderSettings;
 use WordPress\AiClient\AiClient;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -50,4 +52,22 @@ function register_provider(): void {
 	$registry->registerProvider( NvidiaProvider::class );
 }
 
+/**
+ * Registers admin-only settings hooks.
+ *
+ * @since 1.2.0
+ *
+ * @return void
+ */
+function register_admin_hooks(): void {
+	if ( ! function_exists( 'is_admin' ) || ! is_admin() ) {
+		return;
+	}
+
+	add_action( 'admin_init', array( NvidiaProviderSettings::class, 'register' ) );
+	add_action( 'admin_menu', array( NvidiaSettingsPage::class, 'register' ) );
+	add_action( 'admin_enqueue_scripts', array( NvidiaSettingsPage::class, 'enqueueAssets' ) );
+}
+
 add_action( 'init', __NAMESPACE__ . '\\register_provider', 5 );
+add_action( 'init', __NAMESPACE__ . '\\register_admin_hooks', 6 );
