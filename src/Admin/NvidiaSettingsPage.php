@@ -56,7 +56,7 @@ class NvidiaSettingsPage {
 	 * @param string $hookSuffix Current admin page hook suffix.
 	 * @return void
 	 */
-	public static function enqueue_assets( string $hookSuffix ): void {
+	public static function enqueueAssets( string $hookSuffix ): void {
 		if ( 'settings_page_' . self::PAGE_SLUG !== $hookSuffix ) {
 			return;
 		}
@@ -68,18 +68,18 @@ class NvidiaSettingsPage {
 			self::STYLE_HANDLE,
 			plugins_url( 'assets/css/settings-page.css', $pluginFile ),
 			array( 'wp-components' ),
-			self::asset_version( dirname( __DIR__, 2 ) . '/assets/css/settings-page.css' )
+			self::assetVersion( dirname( __DIR__, 2 ) . '/assets/css/settings-page.css' )
 		);
 		wp_enqueue_script(
 			self::SCRIPT_HANDLE,
 			plugins_url( 'assets/js/settings-page.js', $pluginFile ),
 			array( 'wp-components', 'wp-dom-ready', 'wp-element', 'wp-i18n' ),
-			self::asset_version( dirname( __DIR__, 2 ) . '/assets/js/settings-page.js' ),
+			self::assetVersion( dirname( __DIR__, 2 ) . '/assets/js/settings-page.js' ),
 			true
 		);
 		wp_add_inline_script(
 			self::SCRIPT_HANDLE,
-			'window.forgeiaNvidiaSettings = ' . wp_json_encode( self::get_ui_data() ) . ';',
+			'window.forgeiaNvidiaSettings = ' . wp_json_encode( self::getUiData() ) . ';',
 			'before'
 		);
 	}
@@ -112,8 +112,8 @@ class NvidiaSettingsPage {
 	 *
 	 * @return UiData
 	 */
-	private static function get_ui_data(): array {
-		$modelChoices = self::get_model_choices();
+	private static function getUiData(): array {
+		$modelChoices = self::getModelChoices();
 
 		return array(
 			'optionName'  => NvidiaProviderSettings::OPTION_NAME,
@@ -144,18 +144,20 @@ class NvidiaSettingsPage {
 	 *
 	 * @return array{text:list<ModelChoice>,image:list<ModelChoice>,loadError:string}
 	 */
-	private static function get_model_choices(): array {
-		$textModels  = array();
+	private static function getModelChoices(): array {
+		/** @var list<ModelChoice> $textModels */
+		$textModels = array();
+		/** @var list<ModelChoice> $imageModels */
 		$imageModels = array();
 		$loadError   = '';
 
 		try {
 			foreach ( NvidiaProvider::modelMetadataDirectory()->listModelMetadata() as $modelMetadata ) {
-				if ( self::supports_text_generation( $modelMetadata ) ) {
-					$textModels[] = self::model_choice_from_metadata( $modelMetadata );
+				if ( self::supportsTextGeneration( $modelMetadata ) ) {
+					$textModels[] = self::modelChoiceFromMetadata( $modelMetadata );
 				}
-				if ( self::supports_image_generation( $modelMetadata ) ) {
-					$imageModels[] = self::model_choice_from_metadata( $modelMetadata );
+				if ( self::supportsImageGeneration( $modelMetadata ) ) {
+					$imageModels[] = self::modelChoiceFromMetadata( $modelMetadata );
 				}
 			}
 		} catch ( Throwable $throwable ) {
@@ -163,8 +165,8 @@ class NvidiaSettingsPage {
 		}
 
 		$settings = NvidiaProviderSettings::getSettings();
-		self::prepend_saved_choice( $textModels, $settings[ NvidiaProviderSettings::KEY_DEFAULT_TEXT_GENERATION_MODEL ] );
-		self::prepend_saved_choice( $imageModels, $settings[ NvidiaProviderSettings::KEY_DEFAULT_IMAGE_GENERATION_MODEL ] );
+		self::prependSavedChoice( $textModels, $settings[ NvidiaProviderSettings::KEY_DEFAULT_TEXT_GENERATION_MODEL ] );
+		self::prependSavedChoice( $imageModels, $settings[ NvidiaProviderSettings::KEY_DEFAULT_IMAGE_GENERATION_MODEL ] );
 
 		return array(
 			'text'      => $textModels,
@@ -181,7 +183,7 @@ class NvidiaSettingsPage {
 	 * @param ModelMetadata $modelMetadata Model metadata.
 	 * @return ModelChoice
 	 */
-	private static function model_choice_from_metadata( ModelMetadata $modelMetadata ): array {
+	private static function modelChoiceFromMetadata( ModelMetadata $modelMetadata ): array {
 		return array(
 			'id'   => $modelMetadata->getId(),
 			'name' => $modelMetadata->getName(),
@@ -197,7 +199,7 @@ class NvidiaSettingsPage {
 	 * @param string            $modelId Saved model ID.
 	 * @return void
 	 */
-	private static function prepend_saved_choice( array &$choices, string $modelId ): void {
+	private static function prependSavedChoice( array &$choices, string $modelId ): void {
 		if ( '' === $modelId ) {
 			return;
 		}
@@ -225,7 +227,7 @@ class NvidiaSettingsPage {
 	 * @param ModelMetadata $modelMetadata Model metadata.
 	 * @return bool
 	 */
-	private static function supports_text_generation( ModelMetadata $modelMetadata ): bool {
+	private static function supportsTextGeneration( ModelMetadata $modelMetadata ): bool {
 		foreach ( $modelMetadata->getSupportedCapabilities() as $capability ) {
 			if ( $capability->isTextGeneration() ) {
 				return true;
@@ -243,7 +245,7 @@ class NvidiaSettingsPage {
 	 * @param ModelMetadata $modelMetadata Model metadata.
 	 * @return bool
 	 */
-	private static function supports_image_generation( ModelMetadata $modelMetadata ): bool {
+	private static function supportsImageGeneration( ModelMetadata $modelMetadata ): bool {
 		foreach ( $modelMetadata->getSupportedCapabilities() as $capability ) {
 			if ( $capability->isImageGeneration() ) {
 				return true;
@@ -261,7 +263,7 @@ class NvidiaSettingsPage {
 	 * @param string $path Absolute asset path.
 	 * @return string
 	 */
-	private static function asset_version( string $path ): string {
+	private static function assetVersion( string $path ): string {
 		if ( file_exists( $path ) ) {
 			return (string) filemtime( $path );
 		}

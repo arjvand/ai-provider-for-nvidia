@@ -44,6 +44,7 @@
     </rule>
     <rule ref="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid">
         <exclude-pattern>src/Settings/*</exclude-pattern>
+        <exclude-pattern>src/Admin/*</exclude-pattern>
     </rule>
 
     <!-- WordPress plugin bootstrap files intentionally have side effects -->
