@@ -26,4 +26,12 @@ function wp_enqueue_script( string $handle, string $src = '', array $deps = arra
 
 function wp_enqueue_style( string $handle, string $src = '', array $deps = array(), $ver = false, string $media = 'all' ): void {}
 
-function wp_json_encode( $data, int $options = 0, int $depth = 512 ) {}
+function wp_json_encode( $data, int $options = 0, int $depth = 512 ): string {}
+
+function add_options_page( string $page_title, string $menu_title, string $capability, string $menu_slug, callable $callback = null, int $position = null ) {}
+
+function current_user_can( string $capability, ...$args ): bool {}
+
+function esc_html( string $text ): string {}
+
+function settings_fields( string $option_group ): void {}
