@@ -15,7 +15,7 @@
 	function getModelOptions( models ) {
 		return ( models || [] ).map( function ( model ) {
 			return {
-				label: model.name + ' (' + model.id + ')',
+				label: model.id,
 				value: model.id,
 			};
 		} );
