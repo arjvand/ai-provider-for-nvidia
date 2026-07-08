@@ -1,0 +1,24 @@
+.forgeia-nvidia-settings-page {
+	max-width: 840px;
+}
+
+.forgeia-nvidia-settings-app {
+	margin-top: 16px;
+}
+
+.forgeia-nvidia-settings-card {
+	border-radius: 4px;
+}
+
+.forgeia-nvidia-settings-description {
+	margin: 0 0 16px;
+	max-width: 680px;
+}
+
+.forgeia-nvidia-settings-page .components-base-control {
+	max-width: 560px;
+}
+
+.forgeia-nvidia-settings-page .components-button[type='submit'] {
+	margin-top: 8px;
+}
