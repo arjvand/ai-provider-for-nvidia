@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Forgeia\NvidiaAiProvider\Metadata;
 
 use Forgeia\NvidiaAiProvider\Provider\NvidiaProvider;
+use Forgeia\NvidiaAiProvider\Settings\NvidiaProviderSettings;
 use WordPress\AiClient\Messages\Enums\ModalityEnum;
 use WordPress\AiClient\Providers\Http\DTO\Request;
 use WordPress\AiClient\Providers\Http\DTO\Response;
@@ -438,6 +439,11 @@ class NvidiaModelMetadataDirectory extends AbstractOpenAiCompatibleModelMetadata
 		$aId = $a->getId();
 		$bId = $b->getId();
 
+		$preferredComparison = self::comparePreferredDefaultModels( $aId, $bId );
+		if ( 0 !== $preferredComparison ) {
+			return $preferredComparison;
+		}
+
 		// Prefer NVIDIA-branded models.
 		$aIsNvidia = str_starts_with( $aId, 'nvidia/' );
 		$bIsNvidia = str_starts_with( $bId, 'nvidia/' );
@@ -472,6 +478,50 @@ class NvidiaModelMetadataDirectory extends AbstractOpenAiCompatibleModelMetadata
 
 		// Fallback: Sort alphabetically.
 		return strcmp( $aId, $bId );
+	}
+
+	/**
+	 * Compares model IDs against saved default model preferences.
+	 *
+	 * @since 1.2.0
+	 *
+	 * @param string $aId First model ID.
+	 * @param string $bId Second model ID.
+	 * @return int Sort comparison result.
+	 */
+	private static function comparePreferredDefaultModels( string $aId, string $bId ): int {
+		$preferredModelIds = array_values(
+			array_filter(
+				array(
+					NvidiaProviderSettings::getDefaultTextGenerationModel(),
+					NvidiaProviderSettings::getDefaultImageGenerationModel(),
+				),
+				static function ( string $modelId ): bool {
+					return '' !== $modelId;
+				}
+			)
+		);
+
+		if ( array() === $preferredModelIds ) {
+			return 0;
+		}
+
+		$aRank = array_search( $aId, $preferredModelIds, true );
+		$bRank = array_search( $bId, $preferredModelIds, true );
+
+		if ( false !== $aRank && false === $bRank ) {
+			return -1;
+		}
+
+		if ( false !== $bRank && false === $aRank ) {
+			return 1;
+		}
+
+		if ( false !== $aRank && false !== $bRank && $aRank !== $bRank ) {
+			return $aRank <=> $bRank;
+		}
+
+		return 0;
 	}
 
 	/**
