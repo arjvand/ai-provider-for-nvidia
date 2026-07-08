@@ -42,6 +42,9 @@
     <rule ref="Universal.NamingConventions.NoReservedKeywordParameterNames.classFound">
         <exclude-pattern>src/*</exclude-pattern>
     </rule>
+    <rule ref="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid">
+        <exclude-pattern>src/Settings/*</exclude-pattern>
+    </rule>
 
     <!-- WordPress plugin bootstrap files intentionally have side effects -->
     <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
