@@ -8,161 +8,56 @@ Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Adds NVIDIA NIM text, image, and embedding generation to the WordPress AI Client.
+NVIDIA NIM provider for the WordPress AI Client — text, image, vision, and admin settings.
 
 == Description ==
 
-This plugin provides NVIDIA NIM integration for the PHP AI Client SDK. It enables WordPress sites to use NVIDIA's inference microservices for text generation, image generation, and embedding generation.
+This plugin integrates NVIDIA's NIM (NVIDIA Inference Microservices) with the WordPress AI Client, enabling your site to use NVIDIA's hosted AI models for text generation, image generation, and vision / multimodal tasks.
 
 **Features:**
 
-* Text generation with NVIDIA NIM models
-* Image generation with Stable Diffusion and Flux models
-* Embedding generation with NVIDIA NIM models
-* Function calling support
-* Automatic provider registration
+* Text generation with NVIDIA NIM models, including function/tool calling and JSON structured output
+* Image generation with diffusion models (Stable Diffusion, Flux, and others)
+* Vision / multimodal model support — models that accept images and documents alongside text prompts
+* Admin settings page to choose default text and image generation models (**Settings > NVIDIA AI Connector**)
+* Dynamic model discovery — available models are fetched from the NVIDIA NIM API and classified by capability
+* Automatic provider registration with the AI Client
 
-Available models are dynamically discovered from the NVIDIA NIM API and explicitly categorized by capability (text, image, multimodal, embedding), covering models from NVIDIA, Meta, Google, Mistral, and other providers.
+Models from NVIDIA, Meta, Google, Mistral AI, Microsoft, DeepSeek, Qwen, and other providers are discovered and categorized automatically. Many models include free API endpoints for testing and development.
 
 **Requirements:**
 
 * PHP 7.4 or higher
-* For WordPress 6.9, the [wordpress/php-ai-client](https://github.com/wordpress/php-ai-client) package must be installed
-* For WordPress 7.0 and above, no additional changes are required
-* NVIDIA API key
+* WordPress 7.0+ (bundles the required AI Client SDK) or WordPress 6.9 with the [wordpress/php-ai-client](https://github.com/wordpress/php-ai-client) plugin installed separately
+* NVIDIA API key — set via the `NVIDIA_API_KEY` environment variable or PHP constant
 
 == Supported Models ==
 
-Models are discovered from the NVIDIA NIM API and explicitly categorized by capability.
+Models are dynamically discovered from the NVIDIA NIM API and classified by capability using explicit allowlists. The following categories are available:
 
-= Image Generation =
+* **Text Generation** — Chat and text completion models from NVIDIA, Meta, Google, Mistral AI, Microsoft, DeepSeek, Qwen, and others. Includes function/tool calling and JSON structured output support.
+* **Vision / Multimodal** — Models accepting image and document inputs alongside text prompts, including Meta Llama Vision, Microsoft Phi-4 Multimodal, NVIDIA NeVA, NVIDIA VILA, and others.
+* **Image Generation** — Diffusion-based image generation models.
+* **Embedding** — Text embedding models for vector representations (recognized by the provider; usable through SDK embedding workflows).
 
- * `google/diffusiongemma-26b-a4b-it` (Free Endpoint)
-
-= Multimodal Text (image/document input) =
-
-* `adept/fuyu-8b`
-* `google/deplot`
- * `meta/llama-3.2-11b-vision-instruct` (Free Endpoint)
- * `meta/llama-3.2-90b-vision-instruct` (Free Endpoint)
-* `microsoft/kosmos-2`
-* `microsoft/phi-3-vision-128k-instruct`
- * `microsoft/phi-4-multimodal-instruct` (Free Endpoint)
-* `nvidia/cosmos-reason2-8b`
- * `nvidia/llama-3.1-nemotron-nano-vl-8b-v1` (Free Endpoint)
- * `nvidia/nemotron-nano-12b-v2-vl` (Free Endpoint)
-* `nvidia/neva-22b`
-* `nvidia/nvclip`
-* `nvidia/vila`
-
-= Text Generation =
-
-* `01-ai/yi-large`
- * `abacusai/dracarys-llama-3.1-70b-instruct` (Free Endpoint)
-* `ai21labs/jamba-1.5-large-instruct`
-* `aisingapore/sea-lion-7b-instruct`
-* `bigcode/starcoder2-15b`
- * `bytedance/seed-oss-36b-instruct` (Free Endpoint)
-* `databricks/dbrx-instruct`
-* `deepseek-ai/deepseek-coder-6.7b-instruct`
- * `deepseek-ai/deepseek-v4-flash` (Free Endpoint)
- * `deepseek-ai/deepseek-v4-pro` (Free Endpoint)
-* `google/codegemma-1.1-7b`
-* `google/codegemma-7b`
- * `google/gemma-2-2b-it` (Free Endpoint)
-* `google/gemma-2b`
-* `google/gemma-3-12b-it`
-* `google/gemma-3-4b-it`
- * `google/gemma-3n-e2b-it` (Free Endpoint)
- * `google/gemma-3n-e4b-it` (Free Endpoint)
- * `google/gemma-4-31b-it` (Free Endpoint)
-* `google/recurrentgemma-2b`
-* `ibm/granite-3.0-3b-a800m-instruct`
-* `ibm/granite-3.0-8b-instruct`
-* `ibm/granite-34b-code-instruct`
-* `ibm/granite-8b-code-instruct`
-* `meta/codellama-70b`
- * `meta/llama-3.1-70b-instruct` (Free Endpoint)
- * `meta/llama-3.1-8b-instruct` (Free Endpoint)
- * `meta/llama-3.2-1b-instruct` (Free Endpoint)
- * `meta/llama-3.2-3b-instruct` (Free Endpoint)
- * `meta/llama-3.3-70b-instruct` (Free Endpoint)
- * `meta/llama-4-maverick-17b-128e-instruct` (Free Endpoint)
-* `meta/llama2-70b`
-* `microsoft/phi-3.5-moe-instruct`
- * `microsoft/phi-4-mini-instruct` (Free Endpoint)
- * `minimaxai/minimax-m2.7` (Free Endpoint)
- * `minimaxai/minimax-m3` (Free Endpoint)
-* `mistralai/codestral-22b-instruct-v0.1`
- * `mistralai/ministral-14b-instruct-2512` (Free Endpoint)
-* `mistralai/mistral-7b-instruct-v0.3`
-* `mistralai/mistral-large`
-* `mistralai/mistral-large-2-instruct`
- * `mistralai/mistral-large-3-675b-instruct-2512` (Free Endpoint)
- * `mistralai/mistral-medium-3.5-128b` (Free Endpoint)
- * `mistralai/mistral-nemotron` (Free Endpoint)
- * `mistralai/mistral-small-4-119b-2603` (Free Endpoint)
-* `mistralai/mixtral-8x22b-v0.1`
- * `mistralai/mixtral-8x7b-instruct-v0.1` (Free Endpoint)
- * `moonshotai/kimi-k2.6` (Free Endpoint)
-* `nv-mistralai/mistral-nemo-12b-instruct`
- * `nvidia/ising-calibration-1-35b-a3b` (Free Endpoint)
-* `nvidia/llama-3.1-nemotron-51b-instruct`
-* `nvidia/llama-3.1-nemotron-70b-instruct`
- * `nvidia/llama-3.1-nemotron-nano-8b-v1` (Free Endpoint)
-* `nvidia/llama-3.1-nemotron-ultra-253b-v1`
- * `nvidia/llama-3.3-nemotron-super-49b-v1` (Free Endpoint)
- * `nvidia/llama-3.3-nemotron-super-49b-v1.5` (Free Endpoint)
-* `nvidia/llama3-chatqa-1.5-70b`
-* `nvidia/mistral-nemo-minitron-8b-8k-instruct`
- * `nvidia/nemotron-3-nano-30b-a3b` (Free Endpoint)
- * `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning` (Free Endpoint)
- * `nvidia/nemotron-3-super-120b-a12b` (Free Endpoint)
- * `nvidia/nemotron-3-ultra-550b-a55b` (Free Endpoint)
-* `nvidia/nemotron-4-340b-instruct`
- * `nvidia/nemotron-mini-4b-instruct` (Free Endpoint)
-* `nvidia/nemotron-nano-3-30b-a3b`
- * `nvidia/nvidia-nemotron-nano-9b-v2` (Free Endpoint)
-* `nvidia/riva-translate-4b-instruct`
- * `nvidia/riva-translate-4b-instruct-v1.1` (Free Endpoint)
- * `openai/gpt-oss-120b` (Free Endpoint)
- * `openai/gpt-oss-20b` (Free Endpoint)
- * `qwen/qwen3-next-80b-a3b-instruct` (Free Endpoint)
- * `qwen/qwen3.5-122b-a10b` (Free Endpoint)
- * `qwen/qwen3.5-397b-a17b` (Free Endpoint)
- * `sarvamai/sarvam-m` (Free Endpoint)
- * `stepfun-ai/step-3.5-flash` (Free Endpoint)
- * `stepfun-ai/step-3.7-flash` (Free Endpoint)
- * `stockmark/stockmark-2-100b-instruct` (Free Endpoint)
- * `upstage/solar-10.7b-instruct` (Free Endpoint)
-* `writer/palmyra-creative-122b`
-* `writer/palmyra-fin-70b-32k`
-* `writer/palmyra-med-70b`
-* `writer/palmyra-med-70b-32k`
- * `z-ai/glm-5.1` (Free Endpoint)
-* `zyphra/zamba2-7b-instruct`
-
-= Embedding =
-
-* `baai/bge-m3`
-* `nvidia/embed-qa-4`
-* `nvidia/llama-3.2-nemoretriever-1b-vlm-embed-v1`
-* `nvidia/llama-3.2-nv-embedqa-1b-v1`
-* `nvidia/llama-nemotron-embed-1b-v2`
-* `nvidia/llama-nemotron-embed-vl-1b-v2`
- * `nvidia/nv-embed-v1` (Free Endpoint)
- * `nvidia/nv-embedcode-7b-v1` (Free Endpoint)
-* `nvidia/nv-embedqa-e5-v5`
-* `nvidia/nv-embedqa-mistral-7b-v2`
-* `snowflake/arctic-embed-l`
+For the current full model catalog, visit the [NVIDIA NIM API](https://integrate.api.nvidia.com/v1/models) directly. Free API endpoints are available for many models.
 
 == Installation ==
 
 1. Upload the plugin files to `/wp-content/plugins/forgeia-ai-provider-for-nvidia/`
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Configure your NVIDIA API key via the `NVIDIA_API_KEY` environment variable or constant
+2. Activate the plugin through the **Plugins** menu in WordPress
+3. Set your NVIDIA API key via the `NVIDIA_API_KEY` environment variable or PHP constant
+4. Optional: Visit **Settings > NVIDIA AI Connector** to choose default text and image generation models
+
+== Screenshots ==
+
+1. The NVIDIA AI Connector settings page for choosing default text and image generation models.
 
 == Frequently Asked Questions ==
+
+= How do I set default text or image generation models? =
+
+After activation, visit **Settings > NVIDIA AI Connector** to choose your preferred default models from the dynamically fetched model list. These defaults are used when no specific model is requested.
 
 = How do I get an NVIDIA API key? =
 
@@ -176,7 +71,7 @@ No, this plugin requires the PHP AI Client plugin to be installed and activated.
 
 This plugin sends data to the NVIDIA NIM API (https://integrate.api.nvidia.com) when generating text or images. The data sent is limited to the user's prompt text and API key and is used solely to fulfill the generation request. No data is collected, stored, or transmitted to any other third party.
 
-This plugin does not use cookies, tracking, or analytics. It stores no personal data on your server and sets no cookies. In accordance with GDPR and UK GDPR requirements, no user consent is needed for privacy compliance — all data processing is limited to API request fulfillment with no storage or sharing of personal information.
+This plugin does not use cookies, tracking, or analytics. It stores no personal data on your server. In accordance with GDPR and UK GDPR requirements, no user consent is needed for privacy compliance — all data processing is limited to API request fulfillment with no storage or sharing of personal information.
 
 == Changelog ==
 
