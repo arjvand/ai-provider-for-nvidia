@@ -31,7 +31,7 @@ class NvidiaModelMetadataDirectory extends AbstractOpenAiCompatibleModelMetadata
 	/**
 	 * Image generation model allowlist.
 	 *
-	 * Derived from /v1/models fetch on 2026-06-19.
+	 * Derived from /v1/models fetch on 2026-07-29.
 	 *
 	 * @since 1.1.0
 	 *
@@ -44,7 +44,7 @@ class NvidiaModelMetadataDirectory extends AbstractOpenAiCompatibleModelMetadata
 	/**
 	 * Multimodal text generation model allowlist (accept image/document input).
 	 *
-	 * Derived from /v1/models fetch on 2026-06-19.
+	 * Derived from /v1/models fetch on 2026-07-29.
 	 *
 	 * @since 1.1.0
 	 *
@@ -53,12 +53,16 @@ class NvidiaModelMetadataDirectory extends AbstractOpenAiCompatibleModelMetadata
 	private const MULTIMODAL_TEXT_MODELS = array(
 		'adept/fuyu-8b',
 		'google/deplot',
+		'google/gemma-4-31b-it',
 		'meta/llama-3.2-11b-vision-instruct',
 		'meta/llama-3.2-90b-vision-instruct',
+		'meta/llama-4-maverick-17b-128e-instruct',
 		'microsoft/kosmos-2',
 		'microsoft/phi-3-vision-128k-instruct',
 		'microsoft/phi-4-multimodal-instruct',
+		'moonshotai/kimi-k2.6',
 		'nvidia/cosmos-reason2-8b',
+		'nvidia/ising-calibration-1.5-31b',
 		'nvidia/llama-3.1-nemotron-nano-vl-8b-v1',
 		'nvidia/nemotron-nano-12b-v2-vl',
 		'nvidia/neva-22b',
@@ -69,7 +73,7 @@ class NvidiaModelMetadataDirectory extends AbstractOpenAiCompatibleModelMetadata
 	/**
 	 * Text generation model allowlist (text-only chat completion).
 	 *
-	 * Derived from /v1/models fetch on 2026-07-08.
+	 * Derived from /v1/models fetch on 2026-07-29.
 	 *
 	 * @since 1.1.0
 	 *
@@ -92,9 +96,6 @@ class NvidiaModelMetadataDirectory extends AbstractOpenAiCompatibleModelMetadata
 		'google/gemma-2b',
 		'google/gemma-3-12b-it',
 		'google/gemma-3-4b-it',
-		'google/gemma-3n-e2b-it',
-		'google/gemma-3n-e4b-it',
-		'google/gemma-4-31b-it',
 		'google/recurrentgemma-2b',
 		'ibm/granite-3.0-3b-a800m-instruct',
 		'ibm/granite-3.0-8b-instruct',
@@ -106,26 +107,20 @@ class NvidiaModelMetadataDirectory extends AbstractOpenAiCompatibleModelMetadata
 		'meta/llama-3.2-1b-instruct',
 		'meta/llama-3.2-3b-instruct',
 		'meta/llama-3.3-70b-instruct',
-		'meta/llama-4-maverick-17b-128e-instruct',
 		'meta/llama2-70b',
 		'microsoft/phi-3.5-moe-instruct',
 		'microsoft/phi-4-mini-instruct',
 		'minimaxai/minimax-m2.7',
 		'minimaxai/minimax-m3',
 		'mistralai/codestral-22b-instruct-v0.1',
-		'mistralai/ministral-14b-instruct-2512',
 		'mistralai/mistral-7b-instruct-v0.3',
 		'mistralai/mistral-large',
 		'mistralai/mistral-large-2-instruct',
-		'mistralai/mistral-large-3-675b-instruct-2512',
 		'mistralai/mistral-medium-3.5-128b',
 		'mistralai/mistral-nemotron',
-		'mistralai/mistral-small-4-119b-2603',
 		'mistralai/mixtral-8x22b-v0.1',
-		'mistralai/mixtral-8x7b-instruct-v0.1',
-		'moonshotai/kimi-k2.6',
+		'mistralai/mixtral-8x7b-instruct',
 		'nv-mistralai/mistral-nemo-12b-instruct',
-		'nvidia/ising-calibration-1-35b-a3b',
 		'nvidia/llama-3.1-nemotron-51b-instruct',
 		'nvidia/llama-3.1-nemotron-70b-instruct',
 		'nvidia/llama-3.1-nemotron-nano-8b-v1',
@@ -144,15 +139,17 @@ class NvidiaModelMetadataDirectory extends AbstractOpenAiCompatibleModelMetadata
 		'nvidia/nvidia-nemotron-nano-9b-v2',
 		'nvidia/riva-translate-4b-instruct',
 		'nvidia/riva-translate-4b-instruct-v1.1',
+		'nvidia/riva-translate-4b-instruct-v2',
 		'openai/gpt-oss-120b',
 		'openai/gpt-oss-20b',
+		'poolside/laguna-xs-2.1',
 		'qwen/qwen3-next-80b-a3b-instruct',
 		'qwen/qwen3.5-122b-a10b',
-		'qwen/qwen3.5-397b-a17b',
 		'sarvamai/sarvam-m',
 		'stepfun-ai/step-3.5-flash',
 		'stepfun-ai/step-3.7-flash',
 		'stockmark/stockmark-2-100b-instruct',
+		'thinkingmachines/inkling',
 		'upstage/solar-10.7b-instruct',
 		'writer/palmyra-creative-122b',
 		'writer/palmyra-fin-70b-32k',
@@ -165,7 +162,7 @@ class NvidiaModelMetadataDirectory extends AbstractOpenAiCompatibleModelMetadata
 	/**
 	 * Embedding model allowlist.
 	 *
-	 * Derived from /v1/models fetch on 2026-06-19.
+	 * Derived from /v1/models fetch on 2026-07-29.
 	 *
 	 * @since 1.1.0
 	 *
@@ -178,6 +175,7 @@ class NvidiaModelMetadataDirectory extends AbstractOpenAiCompatibleModelMetadata
 		'nvidia/llama-3.2-nv-embedqa-1b-v1',
 		'nvidia/llama-nemotron-embed-1b-v2',
 		'nvidia/llama-nemotron-embed-vl-1b-v2',
+		'nvidia/nemotron-3-embed-1b',
 		'nvidia/nv-embed-v1',
 		'nvidia/nv-embedcode-7b-v1',
 		'nvidia/nv-embedqa-e5-v5',
@@ -188,7 +186,7 @@ class NvidiaModelMetadataDirectory extends AbstractOpenAiCompatibleModelMetadata
 	/**
 	 * Unsupported model allowlist (no SDK abstraction).
 	 *
-	 * Derived from /v1/models fetch on 2026-06-19.
+	 * Derived from /v1/models fetch on 2026-07-29.
 	 *
 	 * @since 1.1.0
 	 *
