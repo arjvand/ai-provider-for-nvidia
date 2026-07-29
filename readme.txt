@@ -3,7 +3,7 @@ Contributors: arjvand
 Tags: ai, nvidia, nim, artificial-intelligence, connector
 Requires at least: 6.9
 Tested up to: 7.0
-Stable tag: 1.1.0
+Stable tag: 1.3.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -74,6 +74,24 @@ This plugin sends data to the NVIDIA NIM API (https://integrate.api.nvidia.com) 
 This plugin does not use cookies, tracking, or analytics. It stores no personal data on your server. In accordance with GDPR and UK GDPR requirements, no user consent is needed for privacy compliance — all data processing is limited to API request fulfillment with no storage or sharing of personal information.
 
 == Changelog ==
+
+= 1.3.0 =
+
+* Refresh NVIDIA model catalog (2026-07-29)
+* Add new models: google/gemma-4-31b-it (multimodal), meta/llama-4-maverick-17b-128e-instruct (multimodal), moonshotai/kimi-k2.6 (multimodal), nvidia/ising-calibration-1.5-31b (multimodal), nvidia/riva-translate-4b-instruct-v2 (text), poolside/laguna-xs-2.1 (text), thinkingmachines/inkling (text), nvidia/nemotron-3-embed-1b (embedding)
+* Remove deprecated/renamed models: google/gemma-3n-e2b-it, google/gemma-3n-e4b-it, mistralai/ministral-14b-instruct-2512, mistralai/mistral-large-3-675b-instruct-2512, mistralai/mistral-small-4-119b-2603, mistralai/mixtral-8x7b-instruct-v0.1, nvidia/ising-calibration-1-35b-a3b, qwen/qwen3.5-397b-a17b
+
+= 1.2.0 =
+
+* Add settings page with preferred default model selection (SelectControl → ComboboxControl)
+* Add JSON structured output support (outputMimeType + outputSchema)
+* Add settings page screenshot to readme and assets
+* Add NVIDIA provider settings storage, admin page, and WPDS assets
+* Redesign settings page with custom branded card layout
+* Fix button text contrast; rename menu to NVIDIA AI Connector
+* Update model allowlist: replace z-ai/glm-5.1 with z-ai/glm-5.2
+* Mark 54 models with (Free Endpoint) in readme.txt
+* Rewrite readme.txt to focus on plugin features
 
 = 1.1.0 =
 
