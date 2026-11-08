@@ -5,8 +5,8 @@ Forgeia AI Provider for NVIDIA for the [PHP AI Client](https://github.com/wordpr
 ## Requirements
 
 - PHP 7.4 or higher
-- When using with WordPress, requires WordPress 7.0 or higher
-    - If using an older WordPress release, the [wordpress/php-ai-client](https://github.com/wordpress/php-ai-client) package must be installed
+- When using with WordPress, requires WordPress 6.9 or higher with the [wordpress/php-ai-client](https://github.com/wordpress/php-ai-client) plugin installed, or WordPress 7.0 or higher, which bundles the AI Client SDK
+- Embedding generation requires AI Client 1.4 or higher. WordPress 7.0 and 7.1 bundle AI Client 1.3.1, which does not include embedding support.
 
 ## Installation
 
@@ -64,7 +64,7 @@ echo $result->toText();
 
 ## Supported Models
 
-Available models are dynamically discovered from the NVIDIA NIM API. This includes text generation models (NVIDIA Nemotron, Meta Llama, Google Gemma, Mistral, and others), and image generation models (Stable Diffusion, Flux). See the [NVIDIA Build](https://build.nvidia.com/) for the full list of available models.
+Available models are dynamically discovered from the NVIDIA NIM API and classified by capability using explicit allowlists. This includes text generation models (NVIDIA Nemotron 3 and 3.5, Meta Llama, Google Gemma 3 and 4, Mistral Large 4, Moonshot Kimi K2.6, Muse Glimmer, Step 5, GLM 5.3, and others), vision / multimodal models that accept images (including Gemma 3 and 4, Kimi K2.6, Muse Glimmer, Step 5, Mistral Large 4, GLM 5.3, NVIDIA NeVA, and NVIDIA VILA), image generation (DiffusionGemma), and embedding models (Nemotron 3.5 Embed, NVCLIP, NV-EmbedQA, Arctic Embed). Embedding generation requires AI Client 1.4+ and is unavailable on WordPress 7.0/7.1, which bundle AI Client 1.3.1. See the [NVIDIA Build](https://build.nvidia.com/) for the full list of available models.
 
 ## Configuration
 
