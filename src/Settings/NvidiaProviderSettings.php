@@ -22,13 +22,37 @@ class NvidiaProviderSettings {
 	public const KEY_DEFAULT_IMAGE_GENERATION_MODEL = 'default_image_generation_model';
 
 	/**
+	 * Default text generation model ID.
+	 *
+	 * @since 1.4.0
+	 *
+	 * @var string
+	 */
+	private const DEFAULT_TEXT_GENERATION_MODEL = 'nvidia/nemotron-3-super-120b-a12b';
+
+	/**
+	 * Legacy default text generation model ID replaced by the 1.4.0 migration.
+	 *
+	 * @since 1.4.0
+	 *
+	 * @var string
+	 */
+	private const LEGACY_DEFAULT_TEXT_GENERATION_MODEL = 'nvidia/llama-3.3-nemotron-super-49b-v1';
+
+	/**
 	 * Registers the plugin settings with WordPress.
+	 *
+	 * The legacy default text model migration runs before the setting is
+	 * registered so the raw saved array is migrated before the sanitize
+	 * callback can reshape unrelated values.
 	 *
 	 * @since 1.2.0
 	 *
 	 * @return void
 	 */
 	public static function register(): void {
+		self::migrateLegacyDefaultTextGenerationModel();
+
 		register_setting(
 			self::OPTION_GROUP,
 			self::OPTION_NAME,
@@ -38,6 +62,37 @@ class NvidiaProviderSettings {
 				'default'           => self::getDefaultSettings(),
 			)
 		);
+	}
+
+	/**
+	 * Migrates the legacy default text generation model to the current default.
+	 *
+	 * Only the saved text model is replaced, and only when it still equals the
+	 * legacy default. All other saved values, including a user-selected text
+	 * model or the image generation model, are left untouched. After the first
+	 * run the saved value equals the new default, so later runs are no-ops.
+	 *
+	 * @since 1.4.0
+	 *
+	 * @return void
+	 */
+	private static function migrateLegacyDefaultTextGenerationModel(): void {
+		if ( ! function_exists( 'get_option' ) || ! function_exists( 'update_option' ) ) {
+			return;
+		}
+
+		$settings = get_option( self::OPTION_NAME, null );
+		if ( ! is_array( $settings ) ) {
+			return;
+		}
+
+		if ( ( $settings[ self::KEY_DEFAULT_TEXT_GENERATION_MODEL ] ?? null ) !== self::LEGACY_DEFAULT_TEXT_GENERATION_MODEL ) {
+			return;
+		}
+
+		$settings[ self::KEY_DEFAULT_TEXT_GENERATION_MODEL ] = self::DEFAULT_TEXT_GENERATION_MODEL;
+
+		update_option( self::OPTION_NAME, $settings );
 	}
 
 	/**
@@ -104,7 +159,7 @@ class NvidiaProviderSettings {
 	 */
 	public static function getDefaultSettings(): array {
 		return array(
-			self::KEY_DEFAULT_TEXT_GENERATION_MODEL  => 'nvidia/llama-3.3-nemotron-super-49b-v1',
+			self::KEY_DEFAULT_TEXT_GENERATION_MODEL  => self::DEFAULT_TEXT_GENERATION_MODEL,
 			self::KEY_DEFAULT_IMAGE_GENERATION_MODEL => '',
 		);
 	}

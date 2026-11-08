@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Forgeia\NvidiaAiProvider\Provider;
 
 use Forgeia\NvidiaAiProvider\Metadata\NvidiaModelMetadataDirectory;
+use Forgeia\NvidiaAiProvider\Models\NvidiaEmbeddingGenerationModel;
 use Forgeia\NvidiaAiProvider\Models\NvidiaImageGenerationModel;
 use Forgeia\NvidiaAiProvider\Models\NvidiaTextGenerationModel;
 use WordPress\AiClient\AiClient;
@@ -18,6 +19,7 @@ use WordPress\AiClient\Providers\Enums\ProviderTypeEnum;
 use WordPress\AiClient\Providers\Http\Enums\RequestAuthenticationMethod;
 use WordPress\AiClient\Providers\Models\Contracts\ModelInterface;
 use WordPress\AiClient\Providers\Models\DTO\ModelMetadata;
+use WordPress\AiClient\Providers\Models\EmbeddingGeneration\Contracts\EmbeddingGenerationModelInterface;
 
 /**
  * Class for the Forgeia AI Provider for NVIDIA.
@@ -56,10 +58,13 @@ class NvidiaProvider extends AbstractApiProvider {
 
 		foreach ( $capabilities as $capability ) {
 			if ( $capability->isEmbeddingGeneration() ) {
-				// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
-				throw new RuntimeException(
-					'Embedding model "' . $modelMetadata->getId() . '" cannot be used for chat or image generation.' // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
-				);
+				if ( ! interface_exists( EmbeddingGenerationModelInterface::class ) ) {
+					// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
+					throw new RuntimeException(
+						'Embedding model "' . $modelMetadata->getId() . '" requires AI Client 1.4 or later, which provides embedding generation support.' // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
+					);
+				}
+				return new NvidiaEmbeddingGenerationModel( $modelMetadata, $providerMetadata );
 			}
 		}
 
