@@ -14,6 +14,8 @@ function esc_html__( string $text, string $domain = 'default' ): string {}
 
 function esc_url( string $url ): string {}
 
+function do_action( string $hook_name, ...$args ): void {}
+
 function get_option( string $option, $default = false ) {}
 
 function plugins_url( string $path = '', string $plugin = '' ): string {}
@@ -35,3 +37,5 @@ function current_user_can( string $capability, ...$args ): bool {}
 function esc_html( string $text ): string {}
 
 function settings_fields( string $option_group ): void {}
+
+function update_option( string $option, $value, $autoload = null ): bool {}

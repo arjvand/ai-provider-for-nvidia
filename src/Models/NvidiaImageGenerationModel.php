@@ -46,7 +46,7 @@ class NvidiaImageGenerationModel extends AbstractOpenAiCompatibleImageGeneration
 		$params = parent::prepareGenerateImageParams( $prompt );
 
 		/*
-		 * NVIDIA NIM image generation models (Stable Diffusion, Flux) use
+		 * NVIDIA NIM image generation models (such as DiffusionGemma) use
 		 * the OpenAI-compatible Images API format.
 		 */
 		return $params;
